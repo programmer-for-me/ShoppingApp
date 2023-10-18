@@ -64,7 +64,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="@string/product_price"
-        android:textSize=""
         app:layout_constraintBottom_toBottomOf="@+id/product_discounted_price"
         app:layout_constraintStart_toEndOf="@+id/product_discounted_price" />
 
