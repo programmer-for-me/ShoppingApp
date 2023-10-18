@@ -33,7 +33,7 @@ class ProductInfoFragment : Fragment() {
         binding = FragmentProductInfoBinding.inflate(layoutInflater)
         val api = APIClient.getInstance().create(APIService::class.java)
 
-                api.getProduct(1).enqueue(object : Callback<Product> {
+        api.getProduct(1).enqueue(object : Callback<Product> {
             override fun onResponse(call: Call<Product>, response: Response<Product>) {
                 if (response.isSuccessful && response.body() != null)
                     Log.d("AAA", "onResponse: ${response.body()?.title}")
