@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.example.shoppingapp.R
 
 class ViewPagerAdapter(private val images: MutableList<Int>) :
@@ -29,7 +30,7 @@ class ViewPagerAdapter(private val images: MutableList<Int>) :
 
     override fun onBindViewHolder(holder: ViewPagerViewHolder, position: Int) {
         val currentImage = images[position]
-        holder.imageView.setImageResource(currentImage)
+        holder.imageView.load(currentImage)
     }
 
 
