@@ -9,11 +9,15 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface APIService {
-    @GET("/products")
+    @GET("products")
     fun getAllProducts(): Call<ProductData>
 
-    @GET("/products/{id}")
+    @GET("products/{id}")
     fun getProduct(@Path("id") id: Int): Call<Product>
+
     @GET("products/search")
     fun searchByName(@Query("q") name: String): Call<ProductData>
+
+    @GET("products/categories")
+    fun getAllCategories(): Call<List<String>>
 }
