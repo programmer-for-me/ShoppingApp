@@ -7,7 +7,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.shoppingapp.R
 import com.example.shoppingapp.adapter.CategoryAdapter
 import com.example.shoppingapp.adapter.FilterAdapter
@@ -50,20 +53,14 @@ class ProductsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentProductsBinding.inflate(inflater, container, false)
-        var products = listOf<Product>()
-        var categories = listOf<String>()
-        var productsAdapter = FilterAdapter(products)
-        var categoryAdapter = CategoryAdapter(requireContext(), categories)
         val api = APIClient.getInstance().create(APIService::class.java)
-
-        binding.productsRv.adapter = productsAdapter
-        binding.categoriesRv.adapter = categoryAdapter
         api.getAllProducts().enqueue(object : Callback<ProductData> {
             @SuppressLint("NotifyDataSetChanged")
             override fun onResponse(call: Call<ProductData>, response: Response<ProductData>) {
-                if (response.isSuccessful && response.body() != null)
-                    products = response.body()!!.products
-                productsAdapter.notifyDataSetChanged()
+                var products = response.body()!!.products
+                var productsAdapter = FilterAdapter(products)
+                binding.productsRv.adapter = productsAdapter
+                binding.productsRv.layoutManager = GridLayoutManager(requireContext(), 2)
             }
 
             override fun onFailure(call: Call<ProductData>, t: Throwable) {
@@ -71,13 +68,14 @@ class ProductsFragment : Fragment() {
             }
 
         })
-        binding.productsRv.layoutManager = GridLayoutManager(requireContext(), 2)
         api.getAllCategories().enqueue(object : Callback<List<String>> {
             @SuppressLint("NotifyDataSetChanged")
             override fun onResponse(call: Call<List<String>>, response: Response<List<String>>) {
-                if (response.isSuccessful && response.body() != null)
-                    categories = response.body()!!
-                categoryAdapter.notifyDataSetChanged()
+                var categories = response.body()!!
+                var categoryAdapter = CategoryAdapter(requireContext(), categories)
+                binding.categoriesRv.adapter = categoryAdapter
+                binding.categoriesRv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+
             }
 
             override fun onFailure(call: Call<List<String>>, t: Throwable) {
