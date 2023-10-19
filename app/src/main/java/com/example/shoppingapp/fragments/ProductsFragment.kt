@@ -1,11 +1,20 @@
 package com.example.shoppingapp.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.shoppingapp.R
+import com.example.shoppingapp.api.APIClient
+import com.example.shoppingapp.api.APIService
+import com.example.shoppingapp.databinding.FragmentProductsBinding
+import com.example.shoppingapp.model.Product
+import com.example.shoppingapp.model.ProductData
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,8 +43,22 @@ class ProductsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_products, container, false)
+        var products = listOf<Product>()
+        val binding = FragmentProductsBinding.inflate(inflater, container, false)
+        val api = APIClient.getInstance().create(APIService::class.java)
+        api.getAllProducts().enqueue(object : Callback<ProductData> {
+            override fun onResponse(call: Call<ProductData>, response: Response<ProductData>) {
+                if (response.isSuccessful && response.body() != null)
+                    products = response.body()!!.products
+            }
+
+            override fun onFailure(call: Call<ProductData>, t: Throwable) {
+                Log.d("TAG", "onFailure: $t")
+            }
+
+        })
+
+        return binding.root
     }
 
     companion object {
