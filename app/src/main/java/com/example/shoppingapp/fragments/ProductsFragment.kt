@@ -7,23 +7,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.shoppingapp.R
 import com.example.shoppingapp.adapter.CategoryAdapter
 import com.example.shoppingapp.adapter.FilterAdapter
 import com.example.shoppingapp.api.APIClient
 import com.example.shoppingapp.api.APIService
 import com.example.shoppingapp.databinding.FragmentProductsBinding
-import com.example.shoppingapp.model.Product
 import com.example.shoppingapp.model.ProductData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.Locale.Category
-import kotlin.math.log
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

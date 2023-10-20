@@ -15,4 +15,9 @@
         android:name="com.example.shoppingapp.fragments.ProductsFragment"
         android:label="fragment_products"
         tools:layout="@layout/fragment_products" />
+    <fragment
+        android:id="@+id/categorilarFragment"
+        android:name="com.example.shoppingapp.fragments.CategorilarFragment"
+        android:label="fragment_categorilar"
+        tools:layout="@layout/fragment_categorilar" />
 </navigation>

@@ -31,10 +31,7 @@ class FilterFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(com.example.shoppingapp.ARG_PARAM1)
-            param2 = it.getString(com.example.shoppingapp.ARG_PARAM2)
-        }
+
     }
 
     override fun onCreateView(
@@ -158,14 +155,6 @@ class FilterFragment : Fragment() {
     }
 
 
-    companion object {
-        fun newInstance(param1: String, param2: String) =
-            MainFragment().apply {
-                arguments = Bundle().apply {
-                    putString(com.example.shoppingapp.ARG_PARAM1, param1)
-                    putString(com.example.shoppingapp.ARG_PARAM2, param2)
-                }
-            }
-    }
+
 }
 
