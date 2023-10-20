@@ -55,7 +55,7 @@ class CategorilarFragment : Fragment() {
                 var categories = response.body()!!
                 var categoryAdapter = CategoryAdapter(requireContext(), categories)
                 binding.categoriesRv2.adapter = categoryAdapter
-                binding.categoriesRv2.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+                binding.categoriesRv2.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
             }
 
