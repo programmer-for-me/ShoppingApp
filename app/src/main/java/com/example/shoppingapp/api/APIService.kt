@@ -22,5 +22,5 @@ interface APIService {
     fun getAllCategories(): Call<List<String>>
 
     @GET("products/category/{category}")
-    fun getCategoryProducts(): Call<Product>
+    fun getCategoryProducts(): Call<ProductData>
 }
