@@ -31,8 +31,8 @@ class CategorilarFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_categorilar, container, false)
+    ): View {
+
 
         val binding = FragmentCategorilarBinding.inflate(inflater, container, false)
 
@@ -66,6 +66,5 @@ class CategorilarFragment : Fragment() {
         })
         return binding.root
     }
-
 
 }
