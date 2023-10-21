@@ -64,6 +64,13 @@ class CategorilarFragment : Fragment() {
             }
 
         })
+
+
+
+
+
+
+
         return binding.root
     }
 

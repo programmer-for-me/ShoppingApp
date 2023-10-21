@@ -51,9 +51,9 @@
         app:layout_constraintTop_toTopOf="@+id/cart" />
 
     <androidx.appcompat.widget.SearchView
-        android:id="@+id/products_search"
+        android:id="@+id/products_search2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/search_shape"
@@ -75,7 +75,7 @@
         android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/products_search" />
+        app:layout_constraintTop_toBottomOf="@+id/products_search2" />
 
     <TextView
         android:id="@+id/view_all"

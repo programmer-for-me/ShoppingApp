@@ -10,7 +10,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.shoppingapp.R
 import com.example.shoppingapp.adapter.FilterAdapter
 import com.example.shoppingapp.api.APIClient
 import com.example.shoppingapp.api.APIService
@@ -151,6 +153,27 @@ class FilterFragment : Fragment() {
             }
 
         })
+
+        binding.bottomNavigation2.setOnItemSelectedListener {
+            when (it.itemId) {
+                R.id.filter5 -> {
+                    findNavController().navigate(R.id.productsFragment)
+                    true
+                }
+                R.id.sortby1 -> {
+                    false
+
+                }
+
+                else -> {
+                    false
+                }
+            }
+        }
+
+
+
+
         return binding.root
     }
 

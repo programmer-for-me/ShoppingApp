@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mainFragment">
+    app:startDestination="@id/mainFragment"
+
+    >
 
     <fragment
         android:id="@+id/mainFragment"
@@ -20,4 +22,10 @@
         android:name="com.example.shoppingapp.fragments.CategorilarFragment"
         android:label="fragment_categorilar"
         tools:layout="@layout/fragment_categorilar" />
+    <fragment
+        android:id="@+id/filterFragment"
+        android:name="com.example.shoppingapp.fragments.FilterFragment"
+        android:label="fragment_filter"
+        tools:layout="@layout/fragment_filter" />
+
 </navigation>
