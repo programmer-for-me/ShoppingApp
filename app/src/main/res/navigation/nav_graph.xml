@@ -27,5 +27,10 @@
         android:name="com.example.shoppingapp.fragments.FilterFragment"
         android:label="fragment_filter"
         tools:layout="@layout/fragment_filter" />
+    <fragment
+        android:id="@+id/sortFragment"
+        android:name="com.example.shoppingapp.fragments.SortFragment"
+        android:label="fragment_sort"
+        tools:layout="@layout/fragment_sort" />
 
 </navigation>

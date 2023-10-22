@@ -57,9 +57,9 @@ class ProductsFragment : Fragment() {
         binding.productsSearch2?.setOnClickListener({
             findNavController().navigate(R.id.filterFragment)
         })
-//        binding.viewAll?.setOnClickListener({
-//            findNavController().navigate(R.id.categorilarFragment)
-//        })
+        binding.viewAll?.setOnClickListener({
+            findNavController().navigate(R.id.categorilarFragment)
+        })
 
 
 

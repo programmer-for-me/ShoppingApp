@@ -117,7 +117,7 @@ class FilterFragment : Fragment() {
         binding.bottomNavigation2.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.filter5 -> {
-                    findNavController().navigate(R.id.categorilarFragment)
+                    findNavController().navigate(R.id.sortFragment)
                     true
                 }
                 R.id.sortby1 -> {

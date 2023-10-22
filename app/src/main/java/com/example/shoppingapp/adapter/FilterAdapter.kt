@@ -47,6 +47,6 @@ class FilterAdapter(var list:List<Product>): RecyclerView.Adapter<FilterAdapter.
         holder.rating.text=item.rating.toString()
 
 
-        holder.discounted_price.text = (item.price * (1-item.discountPercentage/100)).roundToInt().toString()
+        holder.discounted_price.text = "$" + (item.price * (1-item.discountPercentage/100)).roundToInt().toString()
     }
 }
