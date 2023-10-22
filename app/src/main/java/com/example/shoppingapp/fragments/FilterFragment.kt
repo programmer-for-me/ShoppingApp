@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CompoundButton
+import android.widget.RadioButton
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -20,16 +22,16 @@ import com.example.shoppingapp.databinding.FragmentFilterBinding
 import com.example.shoppingapp.databinding.FragmentMainBinding
 import com.example.shoppingapp.model.Product
 import com.example.shoppingapp.model.ProductData
+import com.google.android.material.bottomsheet.BottomSheetDialog
 
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-
+import java.util.Collections
 
 
 class FilterFragment : Fragment() {
-    private var param1: String? = null
-    private var param2: String? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,51 +46,9 @@ class FilterFragment : Fragment() {
         val binding = FragmentFilterBinding.inflate(inflater, container, false)
 
         val api = APIClient.getInstance().create(APIService::class.java)
-//        val l = Login("hbingley1", "CQutx25i8")
-//        api.login(l).enqueue(object : Callback<User> {
-//            override fun onResponse(call: Call<User>, response: Response<User>) {
-//                if (response.isSuccessful && response.body() != null) {
-//                    Log.d(TAG, "onResponse: ${response.body()?.username}")
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<User>, t: Throwable) {
-//                Log.d(TAG, "onFailure: $t")
-//            }
-//
-//        })
-//
-//        api.getAllProducts().enqueue(object : Callback<ProductData> {
-//            override fun onResponse(call: Call<ProductData>, response: Response<ProductData>) {
-//                if (response.isSuccessful && response.body() != null)
-//                    Log.d(TAG, "onResponse: ${response.body()?.products?.get(1)?.description}")
-//            }
-//
-//            override fun onFailure(call: Call<ProductData>, t: Throwable) {
-//                Log.d(TAG, "onFailure: $t")
-//            }
-//
-//        })
-//
-//        api.getProduct(7).enqueue(object : Callback<Product> {
-//            override fun onResponse(call: Call<Product>, response: Response<Product>) {
-//                if (response.isSuccessful && response.body() != null)
-//                    Log.d(TAG, "onResponse: ${response.body()?.title}")
-//            }
-//
-//            override fun onFailure(call: Call<Product>, t: Throwable) {
-//                Log.d(TAG, "onFailure: $t")
-//            }
-//
-//        })
 
         var list=listOf<Product>()
 
-
-//        var mainAdapter = MainAdapter(list)
-//        var hourManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-//        binding.recycler.adapter = mainAdapter
-//        binding.recycler.layoutManager = hourManager
 
 
         api.getAllProducts().enqueue(object : Callback<ProductData> {
@@ -157,11 +117,12 @@ class FilterFragment : Fragment() {
         binding.bottomNavigation2.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.filter5 -> {
-                    findNavController().navigate(R.id.productsFragment)
+                    findNavController().navigate(R.id.categorilarFragment)
                     true
                 }
                 R.id.sortby1 -> {
-                    false
+                   showBottomSheet()
+                    true
 
                 }
 
@@ -173,8 +134,17 @@ class FilterFragment : Fragment() {
 
 
 
+        binding.bottomNavigation2
 
         return binding.root
+    }
+
+
+    private fun showBottomSheet() {
+        val bottomSheetView = layoutInflater.inflate(R.layout.share_bottom_sheet, null)
+        val dialog = BottomSheetDialog(requireContext(), R.style.BottomSheetDialog)
+        dialog.setContentView(bottomSheetView)
+        dialog.show()
     }
 
 

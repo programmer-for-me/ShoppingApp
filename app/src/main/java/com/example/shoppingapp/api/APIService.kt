@@ -12,6 +12,8 @@ interface APIService {
     @GET("products")
     fun getAllProducts(): Call<ProductData>
 
+
+    
     @GET("products/{id}")
     fun getProduct(@Path("id") id: Int): Call<Product>
 

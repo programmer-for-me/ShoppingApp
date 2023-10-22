@@ -62,4 +62,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:menu="@menu/bottom_filter"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

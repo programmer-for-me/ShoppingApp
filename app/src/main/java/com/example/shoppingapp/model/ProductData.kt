@@ -7,9 +7,4 @@ data class ProductData(
 )
 
 
-{
-
-
-
-}
 
