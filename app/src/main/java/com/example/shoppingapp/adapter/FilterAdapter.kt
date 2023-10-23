@@ -45,7 +45,7 @@ class FilterAdapter(var list:List<Product>, var productInterface: ProductInterfa
         holder.itemPrice.text = "$" + item.price.toString()
         holder.discountPercentage.text = item.discountPercentage.toString() + "% OFF"
         holder.rating.text=item.rating.toString()
-        holder.discounted_price.text = (item.price * (1-item.discountPercentage/100)).roundToInt().toString()
+        holder.discounted_price.text = "$" + (item.price * (1-item.discountPercentage/100)).roundToInt().toString()
 
         holder.itemView.setOnClickListener {
             productInterface.productOnClick(list[position].id)
