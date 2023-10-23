@@ -98,7 +98,12 @@ class FilterFragment : Fragment() {
                             response: Response<ProductData>
                         ) {
                             list = response.body()?.products!!
-                            val mainAdapter = FilterAdapter(list)
+                            val mainAdapter = FilterAdapter(list,object : FilterAdapter.ProductInterface{
+                                override fun productOnClick(id: Int) {
+                                    var bundle = bundleOf("id" to id)
+                                    findNavController().navigate(R.id.action_mainFragment_to_productInfoFragment, bundle)
+                                }
+                            })
                             var hourManager = GridLayoutManager(context, 2)
                             binding.recycler.layoutManager = hourManager
                             binding.recycler.adapter = mainAdapter
