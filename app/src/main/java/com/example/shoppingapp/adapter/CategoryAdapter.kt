@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shoppingapp.R
 
-class CategoryAdapter(val context: Context, val categories: List<String>) : RecyclerView.Adapter<CategoryAdapter.CategoryHolder>() {
+class CategoryAdapter(val context: Context, val categories: List<String>, val categoryInterface: CategoryInterface) : RecyclerView.Adapter<CategoryAdapter.CategoryHolder>() {
     class CategoryHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var name = itemView.findViewById<TextView>(R.id.category_name)
     }
@@ -25,5 +25,13 @@ class CategoryAdapter(val context: Context, val categories: List<String>) : Recy
 
     override fun onBindViewHolder(holder: CategoryHolder, position: Int) {
         holder.name.text = categories[position]
+
+        holder.itemView.setOnClickListener {
+            categoryInterface.productOnClick(categories[position])
+        }
+    }
+
+    interface CategoryInterface{
+        fun productOnClick(name:String)
     }
 }

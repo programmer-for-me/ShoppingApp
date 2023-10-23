@@ -84,7 +84,12 @@ class ProductsFragment : Fragment() {
             @SuppressLint("NotifyDataSetChanged")
             override fun onResponse(call: Call<List<String>>, response: Response<List<String>>) {
                 var categories = response.body()!!
-                var categoryAdapter = CategoryAdapter(requireContext(), categories)
+                var categoryAdapter = CategoryAdapter(requireContext(), categories, object: CategoryAdapter.CategoryInterface {
+                    override fun productOnClick(name: String) {
+                        TODO("Not yet implemented")
+                    }
+
+                })
                 binding.categoriesRv.adapter = categoryAdapter
                 binding.categoriesRv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 

@@ -34,7 +34,8 @@ class MainFragment : Fragment() {
                     true
                 }
                 R.id.categories -> {
-                    false
+                    loadFragment(CategorilarFragment())
+                    true
                 }
                 R.id.orders -> {
                     false

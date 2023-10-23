@@ -7,6 +7,7 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
+import java.util.Locale.Category
 
 interface APIService {
     @GET("products")
@@ -24,5 +25,5 @@ interface APIService {
     fun getAllCategories(): Call<List<String>>
 
     @GET("products/category/{category}")
-    fun getCategoryProducts(): Call<ProductData>
+    fun getCategoryProducts(@Path("category") category: String): Call<ProductData>
 }
