@@ -2,7 +2,6 @@ package com.example.shoppingapp.adapter
 
 
 
-import android.text.style.StrikethroughSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,8 +29,9 @@ class FilterAdapter(var list:List<Product>): RecyclerView.Adapter<FilterAdapter.
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductHolder {
-        var holder = ProductHolder(LayoutInflater.from(parent.context).inflate(R.layout.product_item,parent,false))
-        return holder
+        return ProductHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.product_item, parent, false)
+        )
     }
 
     override fun getItemCount(): Int {
@@ -45,8 +45,8 @@ class FilterAdapter(var list:List<Product>): RecyclerView.Adapter<FilterAdapter.
         holder.itemPrice.text = "$" + item.price.toString()
         holder.discountPercentage.text = item.discountPercentage.toString() + "% OFF"
         holder.rating.text=item.rating.toString()
-
-
-        holder.discounted_price.text = "$" + (item.price * (1-item.discountPercentage/100)).roundToInt().toString()
+        holder.discounted_price.text = (item.price * (1-item.discountPercentage/100)).roundToInt().toString()
     }
+
+    interface
 }
