@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.shoppingapp.R
 
-class ViewPagerAdapter(private val images: MutableList<Int>) :
+class ViewPagerAdapter(private val images: List<String>) :
     RecyclerView.Adapter<ViewPagerAdapter.ViewPagerViewHolder>() {
 
 

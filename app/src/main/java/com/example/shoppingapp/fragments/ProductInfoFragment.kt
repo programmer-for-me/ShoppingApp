@@ -6,6 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import androidx.viewpager.widget.PagerAdapter
+import androidx.viewpager.widget.ViewPager
+import androidx.viewpager2.widget.ViewPager2
+import com.example.shoppingapp.R
+import com.example.shoppingapp.adapter.ViewPagerAdapter
 import com.example.shoppingapp.api.APIClient
 import com.example.shoppingapp.api.APIService
 import com.example.shoppingapp.databinding.FragmentProductInfoBinding
@@ -37,7 +43,94 @@ class ProductInfoFragment : Fragment() {
                 .enqueue(object : Callback<Product> {
                     override fun onResponse(call: Call<Product>, response: Response<Product>) {
                         if (response.isSuccessful && response.body() != null)
-                            Log.d("AAA", "onResponse: ${response.body()?.title}")
+                            binding.titlePager.text = response.body()?.title.toString()
+                        binding.pagerDescription.text = response.body()?.description.toString()
+                        binding.pagerRating.text = response.body()?.rating.toString()
+                        binding.brand.text = "• Brand - ${response.body()?.brand}"
+                        binding.categoryNameDetailsPager.text =
+                            "• Category - ${response.body()?.category}"
+                        binding.detailsNamePager.text = "• Name - ${response.body()?.title}"
+                        binding.brand.text = "• Brand - ${response.body()?.brand}"
+                        binding.discountPercentagePager.text =
+                            "${response.body()?.discountPercentage.toString()}%"
+                        binding.originalPricePager.text = "$${response.body()?.price.toString()}"
+                        binding.discountedPricePager.text =
+                            (response.body()?.price!!.toInt() - (response.body()?.discountPercentage!!.toInt() * response.body()?.price!!) / 100).toString()
+                        binding.stockPager.text = response.body()?.stock.toString()
+
+                        binding.pagerItemRating.text = response.body()?.rating.toString()
+                        binding.productPager.adapter = ViewPagerAdapter(response.body()?.images!!)
+                        binding.productPager.registerOnPageChangeCallback(object :
+                            ViewPager2.OnPageChangeCallback() {
+                            override fun onPageScrolled(
+                                position: Int,
+                                positionOffset: Float,
+                                positionOffsetPixels: Int
+                            ) {
+                                super.onPageScrolled(position, positionOffset, positionOffsetPixels)
+                                changeColor()
+                            }
+
+                            override fun onPageSelected(position: Int) {
+                                super.onPageSelected(position)
+                            }
+
+                            override fun onPageScrollStateChanged(state: Int) {
+                                super.onPageScrollStateChanged(state)
+                                changeColor()
+                            }
+
+                            fun changeColor() {
+                                when (binding.productPager.currentItem) {
+
+                                    0 -> {
+                                        binding.iv1.setImageResource(R.color.blue)
+                                        binding.iv2.setImageResource(R.color.grey)
+                                        binding.iv3.setImageResource(R.color.grey)
+                                        binding.iv4.setImageResource(R.color.grey)
+                                        binding.iv5.setImageResource(R.color.grey)
+                                    }
+
+                                    1 -> {
+                                        binding.iv1.setImageResource(R.color.grey)
+                                        binding.iv2.setImageResource(R.color.blue)
+                                        binding.iv3.setImageResource(R.color.grey)
+                                        binding.iv4.setImageResource(R.color.grey)
+                                        binding.iv5.setImageResource(R.color.grey)
+
+                                    }
+
+                                    2 -> {
+                                        binding.iv1.setImageResource(R.color.grey)
+                                        binding.iv2.setImageResource(R.color.grey)
+                                        binding.iv3.setImageResource(R.color.blue)
+                                        binding.iv4.setImageResource(R.color.grey)
+                                        binding.iv5.setImageResource(R.color.grey)
+
+                                    }
+
+                                    3 -> {
+                                        binding.iv1.setImageResource(R.color.grey)
+                                        binding.iv2.setImageResource(R.color.grey)
+                                        binding.iv3.setImageResource(R.color.grey)
+                                        binding.iv4.setImageResource(R.color.blue)
+                                        binding.iv5.setImageResource(R.color.grey)
+
+                                    }
+
+                                    4 -> {
+                                        binding.iv1.setImageResource(R.color.grey)
+                                        binding.iv2.setImageResource(R.color.grey)
+                                        binding.iv3.setImageResource(R.color.grey)
+                                        binding.iv4.setImageResource(R.color.grey)
+                                        binding.iv5.setImageResource(R.color.blue)
+
+                                    }
+                                }
+                            }
+
+                        })
+                        Log.d("AAA", "onResponse: ${response.body()?.title}")
                     }
 
                     override fun onFailure(call: Call<Product>, t: Throwable) {
@@ -45,6 +138,9 @@ class ProductInfoFragment : Fragment() {
                     }
 
                 })
+        }
+        binding.infoBack.setOnClickListener {
+            findNavController().navigate(R.id.action_productInfoFragment_to_productsFragment)
         }
         return binding.root
     }

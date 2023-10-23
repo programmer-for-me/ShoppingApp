@@ -51,6 +51,10 @@
         android:id="@+id/productInfoFragment"
         android:name="com.example.shoppingapp.fragments.ProductInfoFragment"
         android:label="fragment_product_info"
-        tools:layout="@layout/fragment_product_info" />
+        tools:layout="@layout/fragment_product_info" >
+        <action
+            android:id="@+id/action_productInfoFragment_to_productsFragment"
+            app:destination="@id/productsFragment" />
+    </fragment>
 
 </navigation>
