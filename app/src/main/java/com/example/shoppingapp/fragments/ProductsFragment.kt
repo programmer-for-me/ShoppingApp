@@ -33,14 +33,12 @@ private const val ARG_PARAM2 = "param2"
  */
 class ProductsFragment : Fragment() {
     // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var param1: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            param1 = it.getInt(ARG_PARAM1)
         }
     }
 
@@ -67,7 +65,12 @@ class ProductsFragment : Fragment() {
             @SuppressLint("NotifyDataSetChanged")
             override fun onResponse(call: Call<ProductData>, response: Response<ProductData>) {
                 var products = response.body()!!.products
-                var productsAdapter = FilterAdapter(products)
+                var productsAdapter = FilterAdapter(products, object : FilterAdapter.ProductInterface{
+                    override fun productOnClick(id: Int) {
+                        param1 = id
+                    }
+
+                })
                 binding.productsRv.adapter = productsAdapter
                 binding.productsRv.layoutManager = GridLayoutManager(requireContext(), 2)
             }
