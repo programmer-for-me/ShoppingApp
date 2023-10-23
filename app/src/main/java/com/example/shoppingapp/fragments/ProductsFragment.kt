@@ -70,7 +70,6 @@ class ProductsFragment : Fragment() {
                         var bundle = bundleOf("id" to id)
                         findNavController().navigate(R.id.action_mainFragment_to_productInfoFragment, bundle)
                     }
-
                 })
                 binding.productsRv.adapter = productsAdapter
                 binding.productsRv.layoutManager = GridLayoutManager(requireContext(), 2)
