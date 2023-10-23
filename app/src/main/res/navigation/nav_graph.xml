@@ -16,7 +16,11 @@
         android:id="@+id/productsFragment"
         android:name="com.example.shoppingapp.fragments.ProductsFragment"
         android:label="fragment_products"
-        tools:layout="@layout/fragment_products" />
+        tools:layout="@layout/fragment_products" >
+        <action
+            android:id="@+id/action_productsFragment_to_productInfoFragment"
+            app:destination="@id/productInfoFragment" />
+    </fragment>
     <fragment
         android:id="@+id/categorilarFragment"
         android:name="com.example.shoppingapp.fragments.CategorilarFragment"
@@ -32,5 +36,10 @@
         android:name="com.example.shoppingapp.fragments.SortFragment"
         android:label="fragment_sort"
         tools:layout="@layout/fragment_sort" />
+    <fragment
+        android:id="@+id/productInfoFragment"
+        android:name="com.example.shoppingapp.fragments.ProductInfoFragment"
+        android:label="fragment_product_info"
+        tools:layout="@layout/fragment_product_info" />
 
 </navigation>
