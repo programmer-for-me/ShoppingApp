@@ -47,13 +47,13 @@ class FilterAdapter(var list:List<Product>, var productInterface: ProductInterfa
         holder.rating.text=item.rating.toString()
         holder.discounted_price.text = "$" + (item.price * (1-item.discountPercentage/100)).roundToInt().toString()
 
-        holder.itemView.setOnClickListener {
-            productInterface.productOnClick(list[position].id)
-        }
+//        holder.itemView.setOnClickListener {
+//            productInterface.productOnClick(list[position].id)
+//        }
 
     }
 
     interface ProductInterface{
-        fun productOnClick(id:Int)
+        fun productOnClick(product: Product)
     }
 }
