@@ -1,32 +1,39 @@
 package com.example.shoppingapp.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.shoppingapp.R
+import com.example.shoppingapp.adapter.CartAdapter
+import com.example.shoppingapp.api.APIClient
+import com.example.shoppingapp.api.APIService
+import com.example.shoppingapp.databinding.FragmentCartBinding
+import com.example.shoppingapp.model.CartData
+import com.example.shoppingapp.model.CartProduct
+import com.example.shoppingapp.model.Product
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [CartFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+private const val ARG_PARAM1 = "product"
+private const val ARG_PARAM2 = "quantity"
+
+
 class CartFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+    var product: Product? = null
+    private var quantity: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            product = it.getSerializable("product") as Product
+            quantity = it.getInt("quantity")
         }
     }
 
@@ -34,27 +41,42 @@ class CartFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cart, container, false)
+        val binding = FragmentCartBinding.inflate(inflater, container, false)
+        val api = APIClient.getInstance().create(APIService::class.java)
+
+
+
+
+        api.getCart(user.id).enqueue(object : Callback<CartData> {
+            @SuppressLint("SuspiciousIndentation", "NotifyDataSetChanged")
+            override fun onResponse(call: Call<CartData>, response: Response<CartData>) {
+                if (response.isSuccessful){
+                    var cartList = response.body()!!.carts[0].products.toMutableList()
+                    if (product != null){
+
+                        val cartProduct = CartProduct(0.0, 0, product!!.id, product!!.price, quantity, product!!.title, product!!.price * quantity)
+                        cartList.add(0, cartProduct)
+                    }
+                    var adapter = CartAdapter(cartList)
+                    adapter.notifyDataSetChanged()
+                    binding.cartRv.adapter = adapter
+                    }
+
+                }
+
+            override fun onFailure(call: Call<CartData>, t: Throwable) {
+                Log.d("TAG", "onFailure: $t")
+            }
+        })
+
+        binding.back.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.main, MainFragment())
+                .commit()
+        }
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment CartFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            CartFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
+
 }

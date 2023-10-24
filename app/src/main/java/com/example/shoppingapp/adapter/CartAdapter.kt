@@ -19,7 +19,7 @@ class CartAdapter(var cartList:MutableList<CartProduct>) : RecyclerView.Adapter<
     class CartHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         var name:TextView = itemView.findViewById(R.id.name)
         var delete:ImageView = itemView.findViewById(R.id.delete)
-        var price:TextView = itemView.findViewById(R.id.cart_price)
+        var price:TextView = itemView.findViewById(R.id.CartPrice)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartHolder {
