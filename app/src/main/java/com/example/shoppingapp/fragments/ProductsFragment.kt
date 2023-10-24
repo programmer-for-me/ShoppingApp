@@ -65,12 +65,14 @@ class ProductsFragment : Fragment() {
             @SuppressLint("NotifyDataSetChanged")
             override fun onResponse(call: Call<ProductData>, response: Response<ProductData>) {
                 var products = response.body()!!.products
-                var productsAdapter = FilterAdapter(products, object : FilterAdapter.ProductInterface{
-                    override fun productOnClick(id: Int) {
-                        var bundle = bundleOf("id" to id)
-                        findNavController().navigate(R.id.action_mainFragment_to_productInfoFragment, bundle)
-                    }
-                })
+                val productsAdapter = FilterAdapter(products)
+                //                , object : FilterAdapter.ProductInterface{
+//                    override fun productOnClick(id: Int) {
+//                        var bundle = bundleOf("id" to id)
+//                        findNavController().navigate(R.id.action_mainFragment_to_productInfoFragment, bundle)
+//                    }
+//                }
+
                 binding.productsRv.adapter = productsAdapter
                 binding.productsRv.layoutManager = GridLayoutManager(requireContext(), 2)
             }

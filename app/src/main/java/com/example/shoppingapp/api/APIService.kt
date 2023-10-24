@@ -23,8 +23,10 @@ interface APIService {
     @GET("products/search")
     fun searchByName(@Query("q") name: String): Call<ProductData>
 
-    @GET("products/categories")
-    fun getAllCategories(): Call<List<String>>
+    @GET("/products/categories")
+    fun getAllCategories():Call<List<String>>
+
+
 
     @GET("/products/category/{category}")
     fun getProductsofCategory(@Path("category") category: String):Call<ProductData>

@@ -46,28 +46,28 @@ class CartFragment : Fragment() {
 
 
 
-
-        api.getCart(user.id).enqueue(object : Callback<CartData> {
-            @SuppressLint("SuspiciousIndentation", "NotifyDataSetChanged")
-            override fun onResponse(call: Call<CartData>, response: Response<CartData>) {
-                if (response.isSuccessful){
-                    var cartList = response.body()!!.carts[0].products.toMutableList()
-                    if (product != null){
-
-                        val cartProduct = CartProduct(0.0, 0, product!!.id, product!!.price, quantity, product!!.title, product!!.price * quantity)
-                        cartList.add(0, cartProduct)
-                    }
-                    var adapter = CartAdapter(cartList)
-                    adapter.notifyDataSetChanged()
-                    binding.cartRv.adapter = adapter
-                    }
-
-                }
-
-            override fun onFailure(call: Call<CartData>, t: Throwable) {
-                Log.d("TAG", "onFailure: $t")
-            }
-        })
+//
+//        api.getCart(user.id).enqueue(object : Callback<CartData> {
+//            @SuppressLint("SuspiciousIndentation", "NotifyDataSetChanged")
+//            override fun onResponse(call: Call<CartData>, response: Response<CartData>) {
+//                if (response.isSuccessful){
+//                    var cartList = response.body()!!.carts[0].products.toMutableList()
+//                    if (product != null){
+//
+//                        val cartProduct = CartProduct(0.0, 0, product!!.id, product!!.price, quantity, product!!.title, product!!.price * quantity)
+//                        cartList.add(0, cartProduct)
+//                    }
+//                    var adapter = CartAdapter(cartList)
+//                    adapter.notifyDataSetChanged()
+//                    binding.cartRv.adapter = adapter
+//                    }
+//
+//                }
+//
+//            override fun onFailure(call: Call<CartData>, t: Throwable) {
+//                Log.d("TAG", "onFailure: $t")
+//            }
+//        })
 
         binding.back.setOnClickListener {
             parentFragmentManager.beginTransaction()
