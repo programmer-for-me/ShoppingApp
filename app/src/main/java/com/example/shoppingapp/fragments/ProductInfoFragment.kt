@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager.widget.PagerAdapter
@@ -15,6 +16,7 @@ import com.example.shoppingapp.adapter.ViewPagerAdapter
 import com.example.shoppingapp.api.APIClient
 import com.example.shoppingapp.api.APIService
 import com.example.shoppingapp.databinding.FragmentProductInfoBinding
+import com.example.shoppingapp.model.CartProduct
 import com.example.shoppingapp.model.Product
 import retrofit2.Call
 import retrofit2.Callback
@@ -38,6 +40,9 @@ class ProductInfoFragment : Fragment() {
     ): View {
         binding = FragmentProductInfoBinding.inflate(layoutInflater)
         val api = APIClient.getInstance().create(APIService::class.java)
+
+        val addCart_list = mutableListOf<CartProduct>()
+
         if (arguments?.containsKey("id") == true) {
             api.getProduct(arguments?.getInt("id")!!)
                 .enqueue(object : Callback<Product> {
@@ -53,6 +58,7 @@ class ProductInfoFragment : Fragment() {
                         binding.brand.text = "• Brand - ${response.body()?.brand}"
                         binding.discountPercentagePager.text =
                             "${response.body()?.discountPercentage.toString()}%"
+
                         binding.originalPricePager.text = "$${response.body()?.price.toString()}"
                         binding.discountedPricePager.text =
                             (response.body()?.price!!.toInt() - (response.body()?.discountPercentage!!.toInt() * response.body()?.price!!) / 100).toString()
@@ -60,6 +66,14 @@ class ProductInfoFragment : Fragment() {
 
                         binding.pagerItemRating.text = response.body()?.rating.toString()
                         binding.productPager.adapter = ViewPagerAdapter(response.body()?.images!!)
+
+                        binding.addCart.setOnClickListener {
+                            val text = "Added Successfully!"
+                            val duration = Toast.LENGTH_SHORT
+
+                            val toast = Toast.makeText(context, text, duration) // in Activity
+                            toast.show()
+                        }
                         binding.productPager.registerOnPageChangeCallback(object :
                             ViewPager2.OnPageChangeCallback() {
                             override fun onPageScrolled(

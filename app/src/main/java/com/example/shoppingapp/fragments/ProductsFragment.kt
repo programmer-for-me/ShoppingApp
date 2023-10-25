@@ -61,6 +61,9 @@ class ProductsFragment : Fragment() {
         binding.viewAll?.setOnClickListener({
             findNavController().navigate(R.id.categorilarFragment)
         })
+        binding.cart?.setOnClickListener({
+            findNavController().navigate(R.id.cartFragment)
+        })
 
 
 

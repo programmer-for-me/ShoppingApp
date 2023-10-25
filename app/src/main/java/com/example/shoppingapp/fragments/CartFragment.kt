@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.shoppingapp.R
 import com.example.shoppingapp.adapter.CartAdapter
 import com.example.shoppingapp.api.APIClient
@@ -70,9 +71,7 @@ class CartFragment : Fragment() {
 //        })
 
         binding.back.setOnClickListener {
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.main, MainFragment())
-                .commit()
+         findNavController().navigate(R.id.action_cartFragment_to_mainFragment)
         }
 
         return binding.root

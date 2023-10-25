@@ -1,7 +1,7 @@
 package com.example.shoppingapp.model
 
 data class CartProduct(
-    val discountPercentage: Double,
+    val discountPercentage: Int,
     val discountedPrice: Int,
     val id: Int,
     val price: Int,

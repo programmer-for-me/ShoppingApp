@@ -30,6 +30,9 @@
         <action
             android:id="@+id/action_productsFragment_to_productInfoFragment"
             app:destination="@id/productInfoFragment" />
+        <action
+            android:id="@+id/action_productsFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
     </fragment>
     <fragment
         android:id="@+id/categorilarFragment"
@@ -58,6 +61,15 @@
         <action
             android:id="@+id/action_productInfoFragment_to_productsFragment"
             app:destination="@id/productsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.example.shoppingapp.fragments.CartFragment"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart" >
+        <action
+            android:id="@+id/action_cartFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
     </fragment>
 
 </navigation>
