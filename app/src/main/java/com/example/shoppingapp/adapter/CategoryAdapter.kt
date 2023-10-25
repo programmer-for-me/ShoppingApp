@@ -1,6 +1,7 @@
 package com.example.shoppingapp.adapter
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,12 +35,13 @@ class CategoryAdapter(val context: Context, val categories: List<String>, val ca
 //        holder.name.text = categories[position]
 
 
-        if (position == 0) {
-          holder.name.text= "Smartphones"
+        if (position != 0) {
+            holder.name.text = categories[position].capitalize()
         }
         else {
             holder.name.text = categories[position].capitalize()
         }
+
         if ( position == current) {
             holder.cardView.setCardBackgroundColor(context.resources.getColor(R.color.purple))
             holder.name.setTextColor(context.resources.getColor(R.color.white))
@@ -47,15 +49,19 @@ class CategoryAdapter(val context: Context, val categories: List<String>, val ca
             holder.cardView.setCardBackgroundColor(context.resources.getColor(R.color.white))
             holder.name.setTextColor(context.resources.getColor(R.color.purple))
         }
+
         holder.cardView.setOnClickListener {
             if (position != current) {
 
                 notifyItemChanged(current)
                 current = position
                 notifyItemChanged(current)
-                if (position == 0) categoryInterface.productOnClick("")
-                else categoryInterface.productOnClick(categories[position])
+                categoryInterface.productOnClick(categories[position])
             }
+
+
+
+
 //            categoryRecyclerView.visibility = View.GONE
         }
 

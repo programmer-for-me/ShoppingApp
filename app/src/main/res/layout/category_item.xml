@@ -18,6 +18,7 @@
         android:layout_marginHorizontal="16dp"
         android:textSize="18sp"
         android:textColor="#673AB7"
+        android:text="Shoes"
         />
 
 </com.google.android.material.card.MaterialCardView>

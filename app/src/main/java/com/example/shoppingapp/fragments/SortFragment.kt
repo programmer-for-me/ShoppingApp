@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.shoppingapp.R
 import com.example.shoppingapp.databinding.FragmentFilterBinding
 import com.example.shoppingapp.databinding.FragmentSortBinding
@@ -36,7 +37,7 @@ class SortFragment : Fragment() {
 
 
         binding.closeBtn.setOnClickListener({
-
+            findNavController().navigate(R.id.filterFragment)
         })
 
 

@@ -169,6 +169,12 @@ class ProductsFragment : Fragment() {
             }
 
         })
+
+
+
+
+
+
         return binding.root
     }
 
