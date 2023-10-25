@@ -85,7 +85,7 @@ var categoryname = R.id.category_name1
                                         call: Call<ProductData>,
                                         t: Throwable
                                     ) {
-                                        TODO("Not yet implemented")
+
                                     }
 
                                 })
@@ -98,6 +98,8 @@ var categoryname = R.id.category_name1
                     binding.categoriesRv.layoutManager = manager
                     binding.categoriesRv.adapter = adapter
                 }
+
+
 
 
             }

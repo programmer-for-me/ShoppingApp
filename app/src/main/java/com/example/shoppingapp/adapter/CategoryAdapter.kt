@@ -35,12 +35,17 @@ class CategoryAdapter(val context: Context, val categories: List<String>, val ca
 //        holder.name.text = categories[position]
 
 
-        if (position != 0) {
-            holder.name.text = categories[position].capitalize()
+        if (position == 0) {
+            holder.name.text = "All"
+            holder.cardView.setCardBackgroundColor(context.resources.getColor(R.color.purple))
+            holder.name.setTextColor(context.resources.getColor(R.color.white))
+
         }
         else {
-            holder.name.text = categories[position].capitalize()
+            holder.name.text = categories[position -1].capitalize()
         }
+
+
 
         if ( position == current) {
             holder.cardView.setCardBackgroundColor(context.resources.getColor(R.color.purple))
@@ -50,13 +55,15 @@ class CategoryAdapter(val context: Context, val categories: List<String>, val ca
             holder.name.setTextColor(context.resources.getColor(R.color.purple))
         }
 
+
+
         holder.cardView.setOnClickListener {
-            if (position != current) {
+            if (position != current && position !=0) {
 
                 notifyItemChanged(current)
                 current = position
                 notifyItemChanged(current)
-                categoryInterface.productOnClick(categories[position])
+                categoryInterface.productOnClick(categories[position-1])
             }
 
 
@@ -70,10 +77,6 @@ class CategoryAdapter(val context: Context, val categories: List<String>, val ca
 
 
 
-
-        holder.itemView.setOnClickListener {
-            categoryInterface.productOnClick(categories[position])
-        }
 
 
 
