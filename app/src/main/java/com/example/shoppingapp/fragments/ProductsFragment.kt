@@ -116,7 +116,8 @@ class ProductsFragment : Fragment() {
 
                                                         var adapter = FilterAdapter(products, object : FilterAdapter.ProductInterface{
                                                             override fun productOnClick(id: Int) {
-
+                                                                var bundle = bundleOf("id" to id)
+                                                                findNavController().navigate(R.id.productInfoFragment, bundle)
                                                             }
                                                         })
 

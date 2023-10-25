@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.shoppingapp.R
@@ -68,7 +70,8 @@ var categoryname = R.id.category_name1
 
                                         var adapter = FilterAdapter(products, object : FilterAdapter.ProductInterface{
                                             override fun productOnClick(id: Int) {
-
+                                                var bundle = bundleOf("id" to id)
+                                                findNavController().navigate(R.id.productInfoFragment, bundle)
                                             }
                                         })
 
