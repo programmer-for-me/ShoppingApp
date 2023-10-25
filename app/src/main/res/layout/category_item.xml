@@ -5,6 +5,7 @@
     app:strokeColor="#673AB7"
     android:layout_marginVertical="8dp"
     android:layout_marginHorizontal="4dp"
+    android:layout_margin="5dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="24dp"
     android:layout_height="wrap_content">
@@ -12,6 +13,7 @@
 
     <TextView
         android:id="@+id/category_name1"
+        android:layout_margin="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="8dp"
