@@ -74,6 +74,7 @@ class CartFragment : Fragment() {
          findNavController().navigate(R.id.action_cartFragment_to_mainFragment)
         }
 
+
         return binding.root
     }
 

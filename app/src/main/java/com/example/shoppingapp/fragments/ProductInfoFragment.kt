@@ -64,6 +64,7 @@ class ProductInfoFragment : Fragment() {
                             (response.body()?.price!!.toInt() - (response.body()?.discountPercentage!!.toInt() * response.body()?.price!!) / 100).toString()
                         binding.stockPager.text = response.body()?.stock.toString()
 
+
                         binding.pagerItemRating.text = response.body()?.rating.toString()
                         binding.productPager.adapter = ViewPagerAdapter(response.body()?.images!!)
 
