@@ -35,11 +35,11 @@ class CategoryAdapter(val context: Context, val categories: List<String>, val ca
 //        holder.name.text = categories[position]
 
 
-        if (position != 0) {
-            holder.name.text = categories[position].capitalize()
+        if (position == 0) {
+            holder.name.text = "all"
         }
         else {
-            holder.name.text = categories[position].capitalize()
+            holder.name.text = categories[position-1].capitalize()
         }
 
         if ( position == current) {
@@ -52,12 +52,13 @@ class CategoryAdapter(val context: Context, val categories: List<String>, val ca
 
         holder.cardView.setOnClickListener {
             if (position != current) {
-
                 notifyItemChanged(current)
                 current = position
                 notifyItemChanged(current)
-                categoryInterface.productOnClick(categories[position])
+                if (position == 0) categoryInterface.productOnClick("")
+                else categoryInterface.productOnClick(categories[position - 1])
             }
+
 
 
 
