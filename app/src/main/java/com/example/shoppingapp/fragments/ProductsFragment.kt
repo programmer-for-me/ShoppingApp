@@ -69,7 +69,7 @@ class ProductsFragment : Fragment() {
                                 , object : FilterAdapter.ProductInterface{
                     override fun productOnClick(id: Int) {
                         var bundle = bundleOf("id" to id)
-                        findNavController().navigate(R.id.action_mainFragment_to_productInfoFragment, bundle)
+                        findNavController().navigate(R.id.productInfoFragment, bundle)
                     }
                 })
 
@@ -88,7 +88,7 @@ class ProductsFragment : Fragment() {
                 var categories = response.body()!!
                 var categoryAdapter = CategoryAdapter(requireContext(), categories, object: CategoryAdapter.CategoryInterface {
                     override fun productOnClick(name: String) {
-                        TODO("Not yet implemented")
+                        Log.d("TAG", "productOnClick: $name")
                     }
 
                 })
