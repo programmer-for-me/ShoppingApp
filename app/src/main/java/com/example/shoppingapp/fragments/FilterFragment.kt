@@ -48,7 +48,7 @@ class FilterFragment : Fragment() {
 
         val api = APIClient.getInstance().create(APIService::class.java)
 
-        var list=listOf<Product>()
+        var list: List<Product>
 
 
 
