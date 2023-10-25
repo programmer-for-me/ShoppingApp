@@ -17,7 +17,7 @@ import kotlin.math.roundToInt
 
 
 class FilterAdapter(var list:List<Product>
-//, var productInterface: ProductInterface
+, var productInterface: ProductInterface
 ): RecyclerView.Adapter<FilterAdapter.ProductHolder>(){
     class ProductHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         var itemImage: ImageView = itemView.findViewById(R.id.product_image)
@@ -50,13 +50,13 @@ class FilterAdapter(var list:List<Product>
         holder.rating.text=item.rating.toString()
         holder.discounted_price.text = "$" + (item.price * (1-item.discountPercentage/100)).roundToInt().toString()
 
-//        holder.itemView.setOnClickListener {
-//            productInterface.productOnClick(list[position].id)
-//        }
+        holder.itemView.setOnClickListener {
+            productInterface.productOnClick(list[position].id)
+        }
 
     }
 
-//    interface ProductInterface{
-//        fun productOnClick(id: WindowId)
-//    }
+    interface ProductInterface{
+        fun productOnClick(id: Int)
+    }
 }
