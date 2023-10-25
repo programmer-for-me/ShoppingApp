@@ -66,7 +66,11 @@ var categoryname = R.id.category_name1
                                             products.add(i)
                                         }
 
-                                        var adapter = FilterAdapter(products)
+                                        var adapter = FilterAdapter(products, object : FilterAdapter.ProductInterface{
+                                            override fun productOnClick(id: Int) {
+
+                                            }
+                                        })
 
                                         binding.productsRv.adapter = adapter
                                         binding.productsRv.layoutManager = layoutManager

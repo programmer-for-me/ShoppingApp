@@ -55,13 +55,13 @@ class FilterFragment : Fragment() {
         api.getAllProducts().enqueue(object : Callback<ProductData> {
             override fun onResponse(call: Call<ProductData>, response: Response<ProductData>) {
                 list = response.body()?.products!!
-                val mainAdapter = FilterAdapter(list)
-        //                , object : FilterAdapter.ProductInterface{
-//                    override fun productOnClick(id: Int) {
-//                        var bundle = bundleOf("id" to id)
-//                        findNavController().navigate(R.id.action_mainFragment_to_productInfoFragment, bundle)
-//                    }
-//                }
+                val mainAdapter = FilterAdapter(list
+                        , object : FilterAdapter.ProductInterface{
+                    override fun productOnClick(id: Int) {
+                        var bundle = bundleOf("id" to id)
+                        findNavController().navigate(R.id.action_mainFragment_to_productInfoFragment, bundle)
+                    }
+                })
 
                 var hourManager = GridLayoutManager(context, 2)
                 binding.recycler.layoutManager = hourManager
@@ -100,13 +100,12 @@ class FilterFragment : Fragment() {
                             response: Response<ProductData>
                         ) {
                             list = response.body()?.products!!
-                            val mainAdapter = FilterAdapter(list)
-                            //                , object : FilterAdapter.ProductInterface{
-//                    override fun productOnClick(id: Int) {
-//                        var bundle = bundleOf("id" to id)
-//                        findNavController().navigate(R.id.action_mainFragment_to_productInfoFragment, bundle)
-//                    }
-//                }
+                            val mainAdapter = FilterAdapter(list, object : FilterAdapter.ProductInterface{
+                    override fun productOnClick(id: Int) {
+                        var bundle = bundleOf("id" to id)
+                        findNavController().navigate(R.id.action_mainFragment_to_productInfoFragment, bundle)
+                    }
+                })
 
                             var hourManager = GridLayoutManager(context, 2)
                             binding.recycler.layoutManager = hourManager
