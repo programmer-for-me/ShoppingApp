@@ -9,8 +9,6 @@
     tools:context=".fragments.LoginFragment">
 
 
-
-
     <LinearLayout
         android:layout_weight="1"
         android:layout_width="match_parent"
