@@ -57,7 +57,7 @@ class CategoryAdapter(val context: Context, val categories: List<String>, val ca
 
 
         holder.cardView.setOnClickListener {
-            if (position == current && position !=0) {
+            if (position != current && position !=0) {
 
                 notifyItemChanged(current)
                 current = position
