@@ -18,7 +18,6 @@ class CartAdapter(var cartList:MutableList<CartProduct>) : RecyclerView.Adapter<
 
     class CartHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         var name:TextView = itemView.findViewById(R.id.name)
-        var delete:ImageView = itemView.findViewById(R.id.delete)
         var price:TextView = itemView.findViewById(R.id.CartPrice)
     }
 
@@ -35,10 +34,6 @@ class CartAdapter(var cartList:MutableList<CartProduct>) : RecyclerView.Adapter<
         var cart = cartList[position]
         holder.name.text = cart.title
         holder.price.text = cart.total.toString()
-        holder.delete.setOnClickListener {
-            cartList.remove(cart)
-            notifyDataSetChanged()
-        }
 
     }
 

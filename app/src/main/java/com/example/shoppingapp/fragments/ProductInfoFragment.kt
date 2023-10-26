@@ -41,7 +41,6 @@ class ProductInfoFragment : Fragment() {
         binding = FragmentProductInfoBinding.inflate(layoutInflater)
         val api = APIClient.getInstance().create(APIService::class.java)
 
-        val addCart_list = mutableListOf<CartProduct>()
 
         if (arguments?.containsKey("id") == true) {
             api.getProduct(arguments?.getInt("id")!!)
@@ -69,11 +68,15 @@ class ProductInfoFragment : Fragment() {
                         binding.productPager.adapter = ViewPagerAdapter(response.body()?.images!!)
 
                         binding.addCart.setOnClickListener {
-                            val text = "Added Successfully!"
-                            val duration = Toast.LENGTH_SHORT
+                            Toast.makeText(requireContext(), "Added Successfully!", Toast.LENGTH_SHORT).show() // in Activity
+                            findNavController().navigate(R.id.action_productInfoFragment_to_cartFragment,arguments)
 
-                            val toast = Toast.makeText(context, text, duration) // in Activity
-                            toast.show()
+                        }
+                        binding.viewComments.setOnClickListener {
+                            findNavController().navigate(R.id.action_productInfoFragment_to_reviewsFragment)
+                        }
+                        binding.rateBtn.setOnClickListener {
+                            findNavController().navigate(R.id.action_productInfoFragment_to_writeCommentFragment)
                         }
                         binding.productPager.registerOnPageChangeCallback(object :
                             ViewPager2.OnPageChangeCallback() {

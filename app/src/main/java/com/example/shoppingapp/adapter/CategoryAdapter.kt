@@ -50,6 +50,7 @@ class CategoryAdapter(val context: Context, val categories: List<String>, val ca
         if ( position == current) {
             holder.cardView.setCardBackgroundColor(context.resources.getColor(R.color.purple))
             holder.name.setTextColor(context.resources.getColor(R.color.white))
+
         } else {
             holder.cardView.setCardBackgroundColor(context.resources.getColor(R.color.white))
             holder.name.setTextColor(context.resources.getColor(R.color.purple))

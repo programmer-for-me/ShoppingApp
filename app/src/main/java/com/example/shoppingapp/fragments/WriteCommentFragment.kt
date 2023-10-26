@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.shoppingapp.R
+import com.example.shoppingapp.databinding.FragmentWriteCommentBinding
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -28,8 +30,11 @@ class WriteCommentFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_write_comment, container, false)
+        val binding=FragmentWriteCommentBinding.inflate(layoutInflater,container,false)
+        binding.back.setOnClickListener {
+            findNavController().navigate(R.id.action_writeCommentFragment_to_productInfoFragment)
+        }
+        return binding.root
     }
 
     companion object {
