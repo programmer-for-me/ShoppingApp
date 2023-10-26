@@ -1,5 +1,6 @@
 package com.example.shoppingapp.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -45,6 +46,7 @@ class ProductInfoFragment : Fragment() {
         if (arguments?.containsKey("id") == true) {
             api.getProduct(arguments?.getInt("id")!!)
                 .enqueue(object : Callback<Product> {
+                    @SuppressLint("SetTextI18n")
                     override fun onResponse(call: Call<Product>, response: Response<Product>) {
                         if (response.isSuccessful && response.body() != null)
                             binding.titlePager.text = response.body()?.title.toString()

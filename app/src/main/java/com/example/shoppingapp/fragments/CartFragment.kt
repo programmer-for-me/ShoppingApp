@@ -29,7 +29,7 @@ class CartFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            id = it.getInt("quantity")
+            id = it.getInt("id")
         }
     }
 
