@@ -79,7 +79,7 @@ class CartFragment : Fragment() {
         })
 
         binding.back.setOnClickListener {
-         findNavController().navigate(R.id.action_cartFragment_to_mainFragment)
+         findNavController().navigate(R.id.mainFragment)
         }
 
 

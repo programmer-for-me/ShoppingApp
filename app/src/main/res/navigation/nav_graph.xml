@@ -59,5 +59,10 @@
             android:id="@+id/action_productInfoFragment_to_productsFragment"
             app:destination="@id/productsFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.example.shoppingapp.fragments.CartFragment"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart" />
 
 </navigation>

@@ -49,7 +49,7 @@ class ReviewsFragment : Fragment() {
         val api = APIClient.getInstance().create(APIService::class.java)
         var comment = mutableListOf<Comment>()
 binding.close.setOnClickListener {
-    findNavController().navigate(R.id.action_reviewsFragment_to_productInfoFragment)
+    findNavController().navigate(R.id.productInfoFragment)
 }
         api.getCommentsOfProduct(1).enqueue(object : Callback<CommentData>{
             override fun onResponse(call: Call<CommentData>, response: Response<CommentData>) {

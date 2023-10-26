@@ -32,7 +32,7 @@ class WriteCommentFragment : Fragment() {
     ): View? {
         val binding=FragmentWriteCommentBinding.inflate(layoutInflater,container,false)
         binding.back.setOnClickListener {
-            findNavController().navigate(R.id.action_writeCommentFragment_to_productInfoFragment)
+            findNavController().navigate(R.id.productInfoFragment)
         }
         return binding.root
     }
