@@ -5,13 +5,13 @@ import com.example.shoppingapp.model.CommentData
 import com.example.shoppingapp.model.Login
 import com.example.shoppingapp.model.Product
 import com.example.shoppingapp.model.ProductData
+import com.example.shoppingapp.model.User
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
-import java.util.Locale.Category
 
 interface APIService {
     @GET("products")
@@ -21,8 +21,8 @@ interface APIService {
     fun getCart(@Path("id") id: String): Call<CartData>
 
 
-//    @POST("/auth/login")
-//    fun login(@Body login: Login):Call<User>
+    @POST("/auth/login")
+    fun login(@Body login: Login): Call<User>
     
     @GET("products/{id}")
     fun getProduct(@Path("id") id: Int): Call<Product>
@@ -36,6 +36,6 @@ interface APIService {
     @GET("/products/category/{category}")
     fun getProductsofCategory(@Path("category") category: String):Call<ProductData>
 
-    @GET("comments")
-    fun getAllComments():Call<CommentData>
+    @GET("/comments/post/{id}")
+    fun getCommentsOfProduct(@Body id:Int):Call<CommentData>
 }

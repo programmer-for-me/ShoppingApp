@@ -1,11 +1,23 @@
 package com.example.shoppingapp.fragments
 
+import android.content.ContentValues
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import com.example.shoppingapp.MyShared
 import com.example.shoppingapp.R
+import com.example.shoppingapp.api.APIClient
+import com.example.shoppingapp.api.APIService
+import com.example.shoppingapp.databinding.FragmentSignInBinding
+import com.example.shoppingapp.model.Login
+import com.example.shoppingapp.model.User
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,7 +46,35 @@ class SignInFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+        val api = APIClient.getInstance().create(APIService::class.java)
+val binding=FragmentSignInBinding.inflate(layoutInflater,container,false)
+        binding.signInBtn.setOnClickListener {
+            var username: String = binding.email.text.toString()
+            var password: String = binding.password.text.toString()
+            if (username == "" || password == "") {
+                Toast.makeText(requireContext(), "Complete the fields", Toast.LENGTH_SHORT).show()
+            }
+            val l = Login(username, password)
+
+            api.login(l).enqueue(object : Callback<User> {
+                override fun onResponse(call: Call<User>, response: Response<User>) {
+                    if (response.isSuccessful && response.body() != null) {
+                        val shared = MyShared.getInstance(requireContext())
+                        val user = response.body()!!
+                        shared.setUser(user)
+                        parentFragmentManager.beginTransaction()
+                            .replace(R.id.main, MainFragment())
+                            .commit()
+
+                    }
+                }
+
+                override fun onFailure(call: Call<User>, t: Throwable) {
+                    Log.d(ContentValues.TAG, "onFailure: $t")
+                }
+
+            })
+        }
         return inflater.inflate(R.layout.fragment_sign_in, container, false)
     }
 

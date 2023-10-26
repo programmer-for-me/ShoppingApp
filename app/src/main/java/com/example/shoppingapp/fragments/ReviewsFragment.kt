@@ -13,7 +13,9 @@ import com.example.shoppingapp.databinding.FragmentReviewsBinding
 import com.example.shoppingapp.model.Comment
 import com.example.shoppingapp.model.CommentData
 import com.example.shoppingapp.model.Product
-import javax.security.auth.callback.Callback
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -28,6 +30,7 @@ private const val ARG_PARAM2 = "param2"
 class ReviewsFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
+    lateinit var commentObj:Comment
     private var param2: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,7 +51,15 @@ class ReviewsFragment : Fragment() {
 binding.close.setOnClickListener {
     findNavController().navigate(R.id.action_reviewsFragment_to_productInfoFragment)
 }
-//        api.getAllComments().enqueue(object :Callback<CommentData>)
+        api.getCommentsOfProduct(1).enqueue(object : Callback<CommentData>{
+            override fun onResponse(call: Call<CommentData>, response: Response<CommentData>) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onFailure(call: Call<CommentData>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+        })
         return binding.root
     }
 
