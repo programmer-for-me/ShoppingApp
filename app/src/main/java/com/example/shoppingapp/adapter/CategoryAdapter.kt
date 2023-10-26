@@ -65,12 +65,6 @@ class CategoryAdapter(val context: Context, val categories: List<String>, val ca
 
 
 
-        holder.itemView.setOnClickListener {
-            categoryInterface.productOnClick(categories[position])
-        }
-
-
-
 
     }
 
