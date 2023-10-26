@@ -35,11 +35,17 @@ class CategoryAdapter(val context: Context, val categories: List<String>, val ca
 
 
         if (position == 0) {
-          holder.name.text= "Smartphones"
+            holder.name.text = "All"
+            holder.cardView.setCardBackgroundColor(context.resources.getColor(R.color.purple))
+            holder.name.setTextColor(context.resources.getColor(R.color.white))
+
         }
         else {
-            holder.name.text = categories[position].capitalize()
+            holder.name.text = categories[position -1].capitalize()
         }
+
+
+
         if ( position == current) {
             holder.cardView.setCardBackgroundColor(context.resources.getColor(R.color.purple))
             holder.name.setTextColor(context.resources.getColor(R.color.white))
@@ -47,14 +53,16 @@ class CategoryAdapter(val context: Context, val categories: List<String>, val ca
             holder.cardView.setCardBackgroundColor(context.resources.getColor(R.color.white))
             holder.name.setTextColor(context.resources.getColor(R.color.purple))
         }
+
+
+
         holder.cardView.setOnClickListener {
-            if (position != current) {
+            if (position != current && position !=0) {
 
                 notifyItemChanged(current)
                 current = position
                 notifyItemChanged(current)
-                if (position == 0) categoryInterface.productOnClick("")
-                else categoryInterface.productOnClick(categories[position])
+                categoryInterface.productOnClick(categories[position-1])
             }
 //            categoryRecyclerView.visibility = View.GONE
         }
