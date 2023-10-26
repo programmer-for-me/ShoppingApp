@@ -1,7 +1,6 @@
 package com.example.shoppingapp.adapter
 
 
-
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,19 +15,19 @@ import com.example.shoppingapp.model.Product
 import kotlin.math.roundToInt
 
 
-class FilterAdapter(var list:List<Product>
-, var productInterface: ProductInterface
-): RecyclerView.Adapter<FilterAdapter.ProductHolder>(){
-    class ProductHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+class FilterAdapter(
+    var list: List<Product>, var productInterface: ProductInterface
+) : RecyclerView.Adapter<FilterAdapter.ProductHolder>() {
+    class ProductHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var itemImage: ImageView = itemView.findViewById(R.id.product_image)
 
         var itemTitle: TextView = itemView.findViewById(R.id.product_title)
         var itemPrice: TextView = itemView.findViewById(R.id.product_price)
 
-        val discountPercentage : TextView = itemView.findViewById(R.id.textView)
+        val discountPercentage: TextView = itemView.findViewById(R.id.textView)
         val rating: TextView = itemView.findViewById(R.id.stars)
 
-        val discounted_price : TextView = itemView.findViewById(R.id.product_discounted_price)
+        val discounted_price: TextView = itemView.findViewById(R.id.product_discounted_price)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductHolder {
@@ -47,8 +46,9 @@ class FilterAdapter(var list:List<Product>
         holder.itemTitle.text = item.title
         holder.itemPrice.text = "$" + item.price.toString()
         holder.discountPercentage.text = item.discountPercentage.toString() + "% OFF"
-        holder.rating.text=item.rating.toString()
-        holder.discounted_price.text = "$" + (item.price * (1-item.discountPercentage/100)).roundToInt().toString()
+        holder.rating.text = item.rating.toString()
+        holder.discounted_price.text =
+            "$" + (item.price * (1 - item.discountPercentage / 100)).roundToInt().toString()
 
         holder.itemView.setOnClickListener {
             productInterface.productOnClick(list[position].id)
@@ -56,7 +56,7 @@ class FilterAdapter(var list:List<Product>
 
     }
 
-    interface ProductInterface{
+    interface ProductInterface {
         fun productOnClick(id: Int)
     }
 }

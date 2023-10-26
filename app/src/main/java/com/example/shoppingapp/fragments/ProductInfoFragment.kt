@@ -1,12 +1,10 @@
 package com.example.shoppingapp.fragments
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager.widget.PagerAdapter
@@ -17,7 +15,6 @@ import com.example.shoppingapp.adapter.ViewPagerAdapter
 import com.example.shoppingapp.api.APIClient
 import com.example.shoppingapp.api.APIService
 import com.example.shoppingapp.databinding.FragmentProductInfoBinding
-import com.example.shoppingapp.model.CartProduct
 import com.example.shoppingapp.model.Product
 import retrofit2.Call
 import retrofit2.Callback
@@ -41,12 +38,9 @@ class ProductInfoFragment : Fragment() {
     ): View {
         binding = FragmentProductInfoBinding.inflate(layoutInflater)
         val api = APIClient.getInstance().create(APIService::class.java)
-
-
         if (arguments?.containsKey("id") == true) {
             api.getProduct(arguments?.getInt("id")!!)
                 .enqueue(object : Callback<Product> {
-                    @SuppressLint("SetTextI18n")
                     override fun onResponse(call: Call<Product>, response: Response<Product>) {
                         if (response.isSuccessful && response.body() != null)
                             binding.titlePager.text = response.body()?.title.toString()
@@ -59,27 +53,13 @@ class ProductInfoFragment : Fragment() {
                         binding.brand.text = "• Brand - ${response.body()?.brand}"
                         binding.discountPercentagePager.text =
                             "${response.body()?.discountPercentage.toString()}%"
-
                         binding.originalPricePager.text = "$${response.body()?.price.toString()}"
                         binding.discountedPricePager.text =
                             (response.body()?.price!!.toInt() - (response.body()?.discountPercentage!!.toInt() * response.body()?.price!!) / 100).toString()
                         binding.stockPager.text = response.body()?.stock.toString()
 
-
                         binding.pagerItemRating.text = response.body()?.rating.toString()
                         binding.productPager.adapter = ViewPagerAdapter(response.body()?.images!!)
-
-                        binding.addCart.setOnClickListener {
-                            Toast.makeText(requireContext(), "Added Successfully!", Toast.LENGTH_SHORT).show() // in Activity
-                            findNavController().navigate(R.id.action_productInfoFragment_to_cartFragment,arguments)
-
-                        }
-                        binding.viewComments.setOnClickListener {
-                            findNavController().navigate(R.id.action_productInfoFragment_to_reviewsFragment)
-                        }
-                        binding.rateBtn.setOnClickListener {
-                            findNavController().navigate(R.id.action_productInfoFragment_to_writeCommentFragment)
-                        }
                         binding.productPager.registerOnPageChangeCallback(object :
                             ViewPager2.OnPageChangeCallback() {
                             override fun onPageScrolled(

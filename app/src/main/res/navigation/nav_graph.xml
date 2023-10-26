@@ -30,9 +30,6 @@
         <action
             android:id="@+id/action_productsFragment_to_productInfoFragment"
             app:destination="@id/productInfoFragment" />
-        <action
-            android:id="@+id/action_productsFragment_to_cartFragment"
-            app:destination="@id/cartFragment" />
     </fragment>
     <fragment
         android:id="@+id/categorilarFragment"
@@ -61,93 +58,6 @@
         <action
             android:id="@+id/action_productInfoFragment_to_productsFragment"
             app:destination="@id/productsFragment" />
-        <action
-            android:id="@+id/action_productInfoFragment_to_cartFragment"
-            app:destination="@id/cartFragment" />
-        <action
-            android:id="@+id/action_productInfoFragment_to_writeCommentFragment"
-            app:destination="@id/writeCommentFragment" />
-        <action
-            android:id="@+id/action_productInfoFragment_to_reviewsFragment"
-            app:destination="@id/reviewsFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/cartFragment"
-        android:name="com.example.shoppingapp.fragments.CartFragment"
-        android:label="fragment_cart"
-        tools:layout="@layout/fragment_cart" >
-        <action
-            android:id="@+id/action_cartFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.example.shoppingapp.fragments.LoginFragment"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
-        <action
-            android:id="@+id/action_loginFragment_to_signInFragment"
-            app:destination="@id/signInFragment" />
-        <action
-            android:id="@+id/action_loginFragment_to_signUpFragment"
-            app:destination="@id/signUpFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/signInFragment"
-        android:name="com.example.shoppingapp.fragments.SignInFragment"
-        android:label="fragment_sign_in"
-        tools:layout="@layout/fragment_sign_in" >
-        <action
-            android:id="@+id/action_signInFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
-        <action
-            android:id="@+id/action_signInFragment_to_forgotPasswordFragment"
-            app:destination="@id/forgotPasswordFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/signUpFragment"
-        android:name="com.example.shoppingapp.fragments.SignUpFragment"
-        android:label="fragment_sign_up"
-        tools:layout="@layout/fragment_sign_up" >
-        <action
-            android:id="@+id/action_signUpFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/reviewsFragment"
-        android:name="com.example.shoppingapp.fragments.ReviewsFragment"
-        android:label="fragment_reviews"
-        tools:layout="@layout/fragment_reviews" >
-        <action
-            android:id="@+id/action_reviewsFragment_to_productInfoFragment"
-            app:destination="@id/productInfoFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/forgotPasswordFragment"
-        android:name="com.example.shoppingapp.fragments.ForgotPasswordFragment"
-        android:label="fragment_forgot_password"
-        tools:layout="@layout/fragment_forgot_password" >
-        <action
-            android:id="@+id/action_forgotPasswordFragment_to_createPasswordFragment"
-            app:destination="@id/createPasswordFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/createPasswordFragment"
-        android:name="com.example.shoppingapp.fragments.CreatePasswordFragment"
-        android:label="fragment_create_password"
-        tools:layout="@layout/fragment_create_password" >
-        <action
-            android:id="@+id/action_createPasswordFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/writeCommentFragment"
-        android:name="com.example.shoppingapp.fragments.WriteCommentFragment"
-        android:label="fragment_write_comment"
-        tools:layout="@layout/fragment_write_comment" >
-        <action
-            android:id="@+id/action_writeCommentFragment_to_productInfoFragment"
-            app:destination="@id/productInfoFragment" />
     </fragment>
 
 </navigation>

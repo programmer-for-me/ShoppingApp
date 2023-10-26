@@ -1,7 +1,6 @@
 package com.example.shoppingapp.adapter
 
 import android.content.Context
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,40 +35,27 @@ class CategoryAdapter(val context: Context, val categories: List<String>, val ca
 
 
         if (position == 0) {
-            holder.name.text = "All"
-            holder.cardView.setCardBackgroundColor(context.resources.getColor(R.color.purple))
-            holder.name.setTextColor(context.resources.getColor(R.color.white))
-
+          holder.name.text= "Smartphones"
         }
         else {
-            holder.name.text = categories[position -1].capitalize()
+            holder.name.text = categories[position].capitalize()
         }
-
-
-
         if ( position == current) {
             holder.cardView.setCardBackgroundColor(context.resources.getColor(R.color.purple))
             holder.name.setTextColor(context.resources.getColor(R.color.white))
-
         } else {
             holder.cardView.setCardBackgroundColor(context.resources.getColor(R.color.white))
             holder.name.setTextColor(context.resources.getColor(R.color.purple))
         }
-
-
-
         holder.cardView.setOnClickListener {
-            if (position != current && position !=0) {
+            if (position != current) {
 
                 notifyItemChanged(current)
                 current = position
                 notifyItemChanged(current)
-                categoryInterface.productOnClick(categories[position-1])
+                if (position == 0) categoryInterface.productOnClick("")
+                else categoryInterface.productOnClick(categories[position])
             }
-
-
-
-
 //            categoryRecyclerView.visibility = View.GONE
         }
 
@@ -78,6 +64,10 @@ class CategoryAdapter(val context: Context, val categories: List<String>, val ca
 
 
 
+
+        holder.itemView.setOnClickListener {
+            categoryInterface.productOnClick(categories[position])
+        }
 
 
 
