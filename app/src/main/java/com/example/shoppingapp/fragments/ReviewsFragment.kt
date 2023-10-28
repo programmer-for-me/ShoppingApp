@@ -1,12 +1,16 @@
 package com.example.shoppingapp.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.shoppingapp.MyShared
 import com.example.shoppingapp.R
+import com.example.shoppingapp.adapter.CommentAdapter
 import com.example.shoppingapp.api.APIClient
 import com.example.shoppingapp.api.APIService
 import com.example.shoppingapp.databinding.FragmentReviewsBinding
@@ -48,16 +52,22 @@ class ReviewsFragment : Fragment() {
         val binding=FragmentReviewsBinding.inflate(layoutInflater,container,false)
         val api = APIClient.getInstance().create(APIService::class.java)
         var comment = mutableListOf<Comment>()
+        val shared = MyShared.getInstance(requireContext())
+        var product = shared.getProduct()
 binding.close.setOnClickListener {
     findNavController().navigate(R.id.productInfoFragment)
 }
-        api.getCommentsOfProduct(1).enqueue(object : Callback<CommentData>{
+        api.getCommentsOfProduct(product!!.id).enqueue(object : Callback<CommentData>{
             override fun onResponse(call: Call<CommentData>, response: Response<CommentData>) {
-                TODO("Not yet implemented")
+                if (response.isSuccessful && response.body() != null){
+                    comment = response.body()!!.comments.toMutableList()
+                    binding.reviewsRecyclerview.adapter = CommentAdapter(comment)
+                    binding.reviewsRecyclerview.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+                }
             }
 
             override fun onFailure(call: Call<CommentData>, t: Throwable) {
-                TODO("Not yet implemented")
+                Log.d("TAG", "onFailure: $t")
             }
         })
         return binding.root
